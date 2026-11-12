@@ -1,11 +1,15 @@
 import { redirect } from 'next/navigation'
+import { connection } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
 import { signout } from '@/app/login/actions'
 import { getServerAbility } from '@/lib/casl/server'
 import { AbilityProvider, Can } from '@/lib/casl/client'
 import Link from 'next/link'
 
+export const instant = false
+
 export default async function DashboardPage() {
+  await connection()
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 

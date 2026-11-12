@@ -1,8 +1,12 @@
 import { redirect } from 'next/navigation'
+import { connection } from 'next/server'
 import Link from 'next/link'
 import { getServerAbility } from '@/lib/casl/server'
 
+export const instant = false
+
 export default async function AdminPage() {
+  await connection()
   const { user, ability } = await getServerAbility()
 
   // CASL Server-side check
