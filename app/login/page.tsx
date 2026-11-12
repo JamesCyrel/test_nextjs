@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { login } from './actions'
+import { GoogleSignInButton } from '@/components/GoogleSignInButton'
 
 function LoginForm() {
   const searchParams = useSearchParams()
@@ -32,6 +33,15 @@ function LoginForm() {
           {message}
         </div>
       )}
+
+      {/* Google OAuth Button */}
+      <GoogleSignInButton label="Sign in with Google" />
+
+      <div className="my-6 flex items-center gap-3">
+        <div className="h-px flex-1 bg-zinc-800"></div>
+        <span className="text-xs uppercase tracking-wider text-zinc-500">or with email</span>
+        <div className="h-px flex-1 bg-zinc-800"></div>
+      </div>
 
       <form action={login} className="flex flex-col gap-4">
         <div>
@@ -64,7 +74,7 @@ function LoginForm() {
 
         <button
           type="submit"
-          className="mt-3 w-full rounded-xl bg-white py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 active:scale-[0.99] shadow-md shadow-white/5"
+          className="mt-2 w-full rounded-xl bg-white py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 active:scale-[0.99] shadow-md shadow-white/5"
         >
           Sign In
         </button>
